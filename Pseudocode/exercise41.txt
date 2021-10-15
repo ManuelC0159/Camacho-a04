@@ -1,0 +1,5 @@
+Read input from file, check to make sure they are valid inputs
+Store strings read from file into an array, saved in form of firstName LastName
+Size of the array will be the total number of names
+user sort to sort the array by last name 
+print output into file 

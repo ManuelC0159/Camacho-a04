@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+class Solution42{
+    MakeArray()
+    sortLastNames()
+    makeFile()
+}
+
+class File{
+    CSV names
+}
+object NameList
+
+File *--> Solution42
+Solution42 *--> File
+Solution42 *--> NameList
+NameList *--> sort
+sort*-->NameList
+NameList*-->Solution42
+
+@enduml
