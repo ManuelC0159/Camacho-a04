@@ -5,23 +5,87 @@
 package baseline;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Solution42 {
+    public static void main(String[] arg) throws IOException {
+        BufferedReader in = null;
+        ArrayList<String> names = new ArrayList<>();
+        File inputFile = makeFile("data/exercise41_input.txt", true);
+        File outputFile = makeFile("data/exercise41_output.txt", false);
+        PrintWriter writer = new PrintWriter(outputFile);
+        try {
+            if(inputFile == null){
+                throw new FileNotFoundException();
+            }
+
+            FileReader fileIn = new FileReader(inputFile);
+            in = new BufferedReader(fileIn);
+
+            names = makeArray(in);
+
+
+            sortFile(names);
+
+            outputFile.delete();
+
+            writer.println("Total of "+ names.size()+" names\n-----------------------------------");
+            for(String s: names){
+                writer.println(s);
+            }
+            writer.close();
+
+        }
+
+        catch(FileNotFoundException e){
+            outputFile.delete();
+            writer.println("ERROR: FILE NOT FOUND");
+            writer.close();
+        }
+        finally{
+            try{
+                in.close();
+                writer.close();
+            }
+            catch(NullPointerException ignored){}
+        }
+
+    }
+
+    private static File makeFile(String path, boolean input) throws IOException {
+        File temp = new File(path);
+        if(input && temp.exists()){
+            return temp;
+        }
+        else if(input){
+            return null;
+        }
+        else{
+            temp.createNewFile();
+        }
+        return temp;
+    }
+    private static void sortFile(ArrayList<String> arr){
+        Collections.sort(arr);
+    }
+    public static ArrayList<String> makeArray(BufferedReader in) throws IOException {
+        ArrayList<String> list = new ArrayList<>();
+
+        String line;
+        while((line = in.readLine()) != null){
+            list.add(line);
+        }
+        return list;
+    }
+
 
 }
 
 
-public void main(String[] arg) {
-}
-private ArrayList<String> makeArray(){
-}
-private sort(ArrayList<String> arr){}
-}
-private File makeFile(){
-}
+
+
 
 /*
 * PseudoCode
