@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+class Solution42{
+ *createPeople(BufferedReader)
+}
+class Person {
+    First name
+    Last name
+    Salary
+
+    +Person( int, String , String  )
+    +Person( String )
+    +toString()
+
+    +getFirstName()
+    +getLastName()
+    +getSalary()
+    +setFirstName(String)
+    +setLastName(String)
+    +setSalary(int)
+
+
+    +toString()
+}
+
+object File {
+    people data
+}
+
+Solution42 o---> Person
+Solution42 --> FileHandling
+FileHandling o--> File
+App42 o--> File
+
+@enduml
